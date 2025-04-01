@@ -1,54 +1,44 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
-import { RouterOutlet } from '@angular/router'; 
 import { createSwapy, SlotItemMapArray, Swapy, utils } from 'swapy';
 
 interface Item {
   id: string
   title: string
+  slot:string
 }
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements AfterViewInit, OnDestroy {
-  //@ViewChild('containerRef') containerRef!: ElementRef<HTMLDivElement>
+
+  @ViewChild('containerRef') containerRef!: ElementRef<HTMLDivElement>;
 
   items: Item[] = [
-    { id: '1', title: '1' },
-    { id: '2', title: '2' },
-    { id: '3', title: '3' },
+    { id: '1', title: '1' , slot:'1'},
+    { id: '2', title: '2', slot:'2'},
+    { id: '3', title: '3' , slot:'3'},
+    { id: '4', title: '4' , slot:'4'},
   ]
 
   slotItemMap: SlotItemMapArray = utils.initSlotItemMap(this.items, 'id');
   slottedItems: any[] = [];
   swapyRef: Swapy | null = null;
-  idCounter = 4;
+  idCounter = 5;
 
-  @ViewChild('containerRef') containerRef!: ElementRef<HTMLDivElement>;
+  constructor() {
+    this.slottedItems = utils.toSlottedItems(this.items, 'id', this.slotItemMap);
+    console.log('slottedItems', this.slottedItems);
+    console.log('slotItemMap', this.slotItemMap);
+  }
 
   ngAfterViewInit(): void {
     const swapy = createSwapy(this.containerRef.nativeElement);
     swapy.onSwap((event) => console.log('event', event));
-    console.log('Swapy initialized after view render');
   }
-
-  /*
-  ngAfterViewInit(): void {
-    this.updateSlottedItems()
-
-    this.swapyRef = createSwapy(this.containerRef.nativeElement, {
-      manualSwap: true,
-    })
-
-    this.swapyRef.onSwap((event) => {
-      this.slotItemMap = event.newSlotItemMap.asArray
-      this.updateSlottedItems()
-    })
-  }*/
 
   updateSlottedItems() {
     this.slottedItems = utils.toSlottedItems(
@@ -59,7 +49,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   }
 
   addItem() {
-    const newItem: Item = { id: `${this.idCounter}`, title: `${this.idCounter}` }
+    const newItem: Item = { id: `${this.idCounter}`, title: `${this.idCounter}`, slot: `${this.idCounter}` }
     this.items = [...this.items, newItem]
     this.slotItemMap = utils.initSlotItemMap(this.items, 'id')
     this.updateSlottedItems()
@@ -94,6 +84,4 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     }
   }
   
-
-
 }

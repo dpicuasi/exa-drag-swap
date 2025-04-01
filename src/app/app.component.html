@@ -1,25 +1,4 @@
-<!--
-<div class="container" #containerRef>
-  <div class="items">
-    @for (item of slottedItems; track $index) {
-      <div class="slot" [attr.data-swapy-slot]="item.slotId">
-        <div class="item" 
-        [attr.data-swapy-item]="item.itemId">
-          <span>{{ item.item.title }}</span>
-          <button
-            class="delete"
-            data-swapy-no-drag
-            (click)="removeItem(item.item.id)"
-            (keydown)="handleKeyDown($event, item.item.id)"
-          ></button>
-        </div>
-      </div>
-    }
-  </div>
-  <div class="item item--add" (click)="addItem()" (keydown)="handleAddItemKeyDown($event)">+</div>
-
-</div>
---->
+<!--listado contenedor-->
 <div class="container" #containerRef>
   <div class="slot a" data-swapy-slot="1">
     <div class="item a" data-swapy-item="a">
@@ -42,6 +21,11 @@
   <div class="slot d" data-swapy-slot="4">
     <div class="item d" data-swapy-item="d">
       <div>D</div>
+    </div>
+  </div>
+  <div class="slot e" data-swapy-slot="5">
+    <div class="item e" data-swapy-item="e">
+      <div>E</div>
     </div>
   </div>
 </div>

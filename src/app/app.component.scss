@@ -31,6 +31,7 @@
   .second-row {
     display: flex;
     gap: 5px;
+    height: 100px;
   }
   
   .slot {
@@ -45,10 +46,6 @@
   
   .slot.b {
     flex: 2;
-  }
-  
-  .second-row {
-    height: 100px;
   }
   
   .slot.d {
@@ -91,12 +88,15 @@
   }
   
   .handle {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 20px;
-    height: 100%;
     background: rgba(0, 0, 0, 0.5);
+    cursor: grab;
+    width: 24px;
+    height: 24px;
+    background-image: url('/assets/images/handle.svg');
+    opacity: 0.5;
+    position: absolute;
+    top: 14px;
+    left: 10px;
   }
   
   .enable-input {
@@ -105,10 +105,6 @@
     left: 0;
     padding: 10px;
   }
-  
-
-
-
 
 
 
@@ -201,18 +197,6 @@ body {
     &:has(.handle) {
         position: relative;
     }
-}
-
-// Handle styles
-.handle {
-    cursor: grab;
-    width: 24px;
-    height: 24px;
-    background-image: url('/images/handle.svg');
-    opacity: 0.5;
-    position: absolute;
-    top: 14px;
-    left: 10px;
 }
 
 // Delete button styles
