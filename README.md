@@ -1,6 +1,6 @@
 # exa-drag-swap
 
-[![Angular](https://img.shields.io/badge/Angular-18.x-DD0031?style=for-the-badge&logo=angular&logoColor=white)](https://angular.io)
+[![Angular](https://img.shields.io/badge/Angular-20.x-DD0031?style=for-the-badge&logo=angular&logoColor=white)](https://angular.io)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![npm version](https://img.shields.io/npm/v/exa-drag-swap?style=for-the-badge&color=blue)](https://www.npmjs.com/package/exa-drag-swap)
 
@@ -191,7 +191,7 @@ Distribuido bajo la licencia MIT. Ver `LICENSE` para más detalles.
 
 ## 🙏 Agradecimientos
 
-- [Angular](https://angular.io) – Framework principal
+- [Angular](https://angular.io) – Framework principal (v20.3.18)
 - [Swapy](https://www.npmjs.com/package/swapy) – Librería de utilidades
 - Comunidad de Angular por sus contribuciones
 
