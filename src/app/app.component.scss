@@ -1,72 +1,101 @@
-/* Variables de color */
-$slot-a-color: #b95050;
-$slot-b-color: #50b97f;
-$slot-c-color: #508db9;
-$slot-d-color: #b95096;
-$slot-e-color: #d4a017; /* Color para el slot e */
-$highlight-color: #444;
-$handle-bg: rgba(0, 0, 0, 0.5);
+/* Variables de color — gradientes modernos */
+$slot-a-gradient: linear-gradient(135deg, #f5576c, #ff6a88);
+$slot-b-gradient: linear-gradient(135deg, #43e97b, #38f9d7);
+$slot-c-gradient: linear-gradient(135deg, #4facfe, #00f2fe);
+$slot-d-gradient: linear-gradient(135deg, #a18cd1, #fbc2eb);
+$slot-e-gradient: linear-gradient(135deg, #f6d365, #fda085);
+$highlight-color: rgba(255, 255, 255, 0.08);
+$handle-bg: rgba(0, 0, 0, 0.35);
+$slot-bg: rgba(255, 255, 255, 0.04);
+$slot-border: rgba(255, 255, 255, 0.08);
 
-/* Reset y estilos base */
-* {
-  box-sizing: border-box;
-}
-
-body,
-app-root {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  width: 100%;
-  min-height: 100dvh;
+/* Host — centra el componente */
+:host {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 0;
-  margin: 0;
+  justify-content: center;
+  width: 100%;
+  min-height: 100dvh;
+  padding: 40px 20px;
   text-align: center;
-  background: #242424;
+}
+
+/* Título */
+h2 {
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 28px;
+  background: linear-gradient(90deg, #4facfe, #f5576c, #f6d365);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s ease infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 200% center; }
+}
+
+/* Footer */
+h4 {
+  margin-top: 32px;
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.04em;
 }
 
 /* Contenedor principal */
 .container {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
   width: 100%;
-  max-width: 500px;
-  padding: 10px;
+  max-width: 520px;
+  padding: 20px;
   margin: 0 auto;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 /* Fila secundaria */
 .second-row {
   display: flex;
-  gap: 5px;
+  gap: 10px;
   height: 100px;
   justify-content: center;
 }
 
 /* Slots (zonas de destino) */
 .slot {
-  background: #111;
+  background: $slot-bg;
+  border: 1.5px dashed $slot-border;
   flex: 1;
-  border-radius: 10px;
-  height: 100px;
-  margin: 0 auto;
+  border-radius: 14px;
+  height: 110px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: background 0.3s ease, border-color 0.3s ease;
 
   &[data-swapy-highlighted] {
     background: $highlight-color;
+    border-color: rgba(255, 255, 255, 0.2);
   }
 }
 
-.slot.a { flex-basis: 150px; height: 150px; }
-.slot.b { flex: 2; }
-.slot.d { flex-basis: 120px; height: 120px; }
-.slot.e { flex: 1; height: 100px; }
+.slot.a { height: 120px; }
+.slot.b { flex: 2; height: 110px; }
+.slot.d { height: 110px; }
+.slot.e { height: 110px; }
 
 /* Items (elementos arrastrables) */
 .item {
@@ -76,18 +105,22 @@ app-root {
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 40px;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
   position: relative;
-  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
-  &.a { background: $slot-a-color; }
-  &.b { background: $slot-b-color; }
-  &.c { background: $slot-c-color; }
-  &.d { background: $slot-d-color; }
-  &.e { background: $slot-e-color; }
+  &.a { background: $slot-a-gradient; }
+  &.b { background: $slot-b-gradient; color: #1a3a2a; text-shadow: none; }
+  &.c { background: $slot-c-gradient; color: #0d2f4f; text-shadow: none; }
+  &.d { background: $slot-d-gradient; color: #3a2048; text-shadow: none; }
+  &.e { background: $slot-e-gradient; color: #4a3010; text-shadow: none; }
 }
 
 /* Handle (asa para arrastrar) */
@@ -96,9 +129,18 @@ app-root {
   cursor: grab;
   width: 24px;
   height: 24px;
+  border-radius: 4px;
   background-image: url('/assets/images/handle.svg');
-  opacity: 0.5;
+  background-size: 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.6;
   position: absolute;
-  top: 14px;
+  top: 10px;
   left: 10px;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 1;
+  }
 }
