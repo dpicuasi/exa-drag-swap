@@ -1,18 +1,265 @@
-/* You can add global styles to this file, and also import other style files */
-
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+html {
+  min-height: 100%;
+}
+
 body {
-  font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto,
-    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   min-height: 100dvh;
+  overflow-x: hidden;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  color: #fff;
+}
+
+.drag-swap-demo {
+  margin-top: 24px;
+}
+
+.drag-swap-demo__header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 18px;
+}
+
+.drag-swap-demo__eyebrow {
+  margin: 0 0 8px;
+  color: rgba(255, 255, 255, 0.64);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.drag-swap-demo__title {
+  margin: 0;
+  color: #fff;
+  font-size: 1.4rem;
+}
+
+.drag-swap-demo__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.drag-swap-demo .action-button {
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease, opacity 0.18s ease;
+}
+
+.drag-swap-demo .action-button:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.28);
+  transform: translateY(-1px);
+}
+
+.drag-swap-demo .action-button:active {
+  transform: translateY(0);
+}
+
+.drag-swap-demo .action-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+  transform: none;
+}
+
+.drag-swap-demo__status {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.drag-swap-demo__status-item {
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  background: rgba(8, 14, 28, 0.5);
+}
+
+.drag-swap-demo__status-item span {
+  display: block;
+  margin-bottom: 6px;
+  color: rgba(255, 255, 255, 0.56);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.drag-swap-demo__status-item strong {
+  display: block;
+  color: #fff;
+  font-size: 0.98rem;
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+.drag-swap-demo .container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 560px;
+  padding: 20px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.drag-swap-demo .second-row {
+  display: flex;
+  gap: 10px;
+  min-height: 100px;
+  justify-content: center;
+}
+
+.drag-swap-demo .slot {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1.5px dashed rgba(255, 255, 255, 0.08);
+  flex: 1;
+  border-radius: 14px;
+  min-height: 110px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  transition: background 0.24s ease, border-color 0.24s ease;
+}
+
+.drag-swap-demo .slot.a {
+  min-height: 120px;
+}
+
+.drag-swap-demo .slot.b {
+  flex: 2;
+}
+
+.drag-swap-demo .slot[data-swapy-highlighted] {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.drag-swap-demo .item {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #fff;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  position: relative;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  touch-action: none;
+  transition: box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.drag-swap-demo .item.a { background: linear-gradient(135deg, #f5576c, #ff6a88); }
+.drag-swap-demo .item.b { background: linear-gradient(135deg, #43e97b, #38f9d7); color: #1a3a2a; text-shadow: none; }
+.drag-swap-demo .item.c { background: linear-gradient(135deg, #4facfe, #00f2fe); color: #0d2f4f; text-shadow: none; }
+.drag-swap-demo .item.d { background: linear-gradient(135deg, #a18cd1, #fbc2eb); color: #3a2048; text-shadow: none; }
+.drag-swap-demo .item.e { background: linear-gradient(135deg, #f6d365, #fda085); color: #4a3010; text-shadow: none; }
+.drag-swap-demo .item.f { background: linear-gradient(135deg, #84fab0, #8fd3f4); color: #17364d; text-shadow: none; }
+.drag-swap-demo .item.g { background: linear-gradient(135deg, #ffecd2, #fcb69f); color: #4b2418; text-shadow: none; }
+.drag-swap-demo .item.h { background: linear-gradient(135deg, #cfd9df, #e2ebf0); color: #293441; text-shadow: none; }
+
+.drag-swap-demo .item[data-swapy-dragging] {
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.38);
+  cursor: grabbing;
+  filter: saturate(1.08);
+}
+
+.drag-swap-demo__events {
+  margin-top: 16px;
+  padding: 16px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  background: rgba(8, 14, 28, 0.5);
+}
+
+.drag-swap-demo__events-title {
+  margin-bottom: 12px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.drag-swap-demo__event-list {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.drag-swap-demo__event-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.drag-swap-demo__event-kind {
+  flex: 0 0 auto;
+  min-width: 52px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 720px) {
+  .drag-swap-demo__header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .drag-swap-demo__actions {
+    justify-content: stretch;
+  }
+
+  .drag-swap-demo .action-button {
+    width: 100%;
+  }
+
+  .drag-swap-demo__status {
+    grid-template-columns: 1fr;
+  }
+
+  .drag-swap-demo .container {
+    padding: 16px;
+  }
+
+  .drag-swap-demo .item {
+    font-size: 30px;
+  }
 }

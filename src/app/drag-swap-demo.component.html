@@ -1,0 +1,75 @@
+<section class="drag-swap-demo">
+  <div class="drag-swap-demo__header">
+    <div>
+      <p class="drag-swap-demo__eyebrow">Tablero</p>
+      <h2 class="drag-swap-demo__title">Intercambio visual</h2>
+    </div>
+
+    <div class="drag-swap-demo__actions">
+      <button class="action-button" type="button" (click)="resetLayout()">Reset</button>
+      <button class="action-button" type="button" (click)="clearStoredState()">Limpiar estado</button>
+      <button class="action-button" type="button" (click)="addItem()">Agregar tarjeta</button>
+      <button
+        class="action-button"
+        type="button"
+        (click)="removeLastItem()"
+        [disabled]="!canRemoveItem"
+      >
+        Quitar tarjeta
+      </button>
+    </div>
+  </div>
+
+  <div class="drag-swap-demo__status">
+    <div class="drag-swap-demo__status-item">
+      <span>Tarjetas actuales</span>
+      <strong>{{ currentOrder }}</strong>
+    </div>
+    <div class="drag-swap-demo__status-item">
+      <span>Último evento</span>
+      <strong>{{ lastEvent }}</strong>
+    </div>
+  </div>
+
+  <div class="container" #containerRef>
+    <div class="slot a" data-swapy-slot="1">
+      <div class="item a" data-swapy-item="a">
+        <div>A</div>
+      </div>
+    </div>
+    <div class="second-row">
+      <div class="slot b" data-swapy-slot="2">
+        <div class="item b" data-swapy-item="b">
+          <div>B</div>
+        </div>
+      </div>
+      <div class="slot c" data-swapy-slot="3">
+        <div class="item c" data-swapy-item="c">
+          <div>C</div>
+        </div>
+      </div>
+    </div>
+    <div class="slot d" data-swapy-slot="4">
+      <div class="item d" data-swapy-item="d">
+        <div>D</div>
+      </div>
+    </div>
+    <div class="slot e" data-swapy-slot="5">
+      <div class="item e" data-swapy-item="e">
+        <div>E</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="drag-swap-demo__events">
+    <div class="drag-swap-demo__events-title">Eventos recientes</div>
+    <ol class="drag-swap-demo__event-list">
+      @for (entry of eventLog; track entry.id) {
+        <li class="drag-swap-demo__event-item">
+          <span class="drag-swap-demo__event-kind">{{ entry.kind }}</span>
+          <span>{{ entry.message }}</span>
+        </li>
+      }
+    </ol>
+  </div>
+</section>

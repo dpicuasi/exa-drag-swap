@@ -1,53 +1,20 @@
-<h2>Ejemplo de como usar "Drag and Swap" con Angular20+</h2>
+<main class="page">
+  <section class="hero">
+    <p class="eyebrow">Angular 20 + Swapy</p>
+    <h1>Drag and Swap</h1>
+    <p class="hero-copy">
+      Un ejemplo vivo para ver cómo montar un tablero de intercambio drag-to-swap en Angular,
+      con persistencia, eventos y controles de mantenimiento.
+    </p>
+  </section>
 
-<!--listado contenedor-->
-<div class="container" #containerRef>
-  <div class="slot a" data-swapy-slot="1">
-    <div class="item a" data-swapy-item="a">
-      <div>A</div>
-    </div>
-  </div>
-  <div class="second-row">
-    <div class="slot b" data-swapy-slot="2">
-      <div class="item b" data-swapy-item="b">
-        <div>B</div>
-      </div>
-    </div>
-    <div class="slot c" data-swapy-slot="3">
-      <div class="item c" data-swapy-item="c">
-        <div>C</div>
-      </div>
-    </div>
-  </div>
-  <div class="slot d" data-swapy-slot="4">
-    <div class="item d" data-swapy-item="d">
-      <div>D</div>
-    </div>
-  </div>
-  <div class="slot e" data-swapy-slot="5">
-    <div class="item e" data-swapy-item="e">
-      <div>E</div>
-    </div>
-  </div>
-</div>
+  <app-drag-swap-demo></app-drag-swap-demo>
 
-<div class="actions">
-  <button class="action-button" type="button" (click)="resetLayout()">
-    Reset
-  </button>
-  <button class="action-button" type="button" (click)="addItem()">
-    Agregar tarjeta
-  </button>
-  <button
-    class="action-button"
-    type="button"
-    (click)="removeLastItem()"
-    [disabled]="!canRemoveItem"
-  >
-    Quitar tarjeta
-  </button>
-</div>
-
-<p class="order-label">Tarjetas actuales: {{ currentOrder }}</p>
-
-<h2>dpicuasi&#64;developer</h2>
+  <section class="usage">
+    <div class="section-heading">
+      <p class="eyebrow">Uso básico</p>
+      <h2>Inicialización mínima</h2>
+    </div>
+    <pre class="code-block"><code>{{ usageSnippet }}</code></pre>
+  </section>
+</main>

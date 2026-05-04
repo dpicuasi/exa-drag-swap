@@ -1,61 +1,63 @@
 # exa-drag-swap
 
-## About The Project
+Demo en Angular 20 para montar una interfaz de drag-to-swap con [Swapy](https://www.npmjs.com/package/swapy).
 
-A drag-and-drop component for Angular that allows users to easily create and manage draggable items.
+## Demo
 
-## Screenshot
+La versión publicada vive en GitHub Pages:
 
-![Screenshot del proyecto](images/screenshot.jpeg)
+https://dpicuasi.github.io/exa-drag-swap/
 
-### Features
-- [x] Responsive design
-- [x] Customizable styling
-- [x] Touch support
-- [x] Accessibility features
+## Qué incluye
 
-## Installation
+- Tablero base con tarjetas A-E.
+- Soporte para arrastrar desde cualquier parte de la tarjeta.
+- Reset del orden actual.
+- Limpieza del estado guardado.
+- Agregar y quitar tarjetas dinámicamente.
+- Historial de eventos de Swapy.
+- Persistencia del layout en `localStorage`.
+
+## Desarrollo local
 
 ```bash
-npm install exa-drag-swap
+npm install
+npm start -- --host 0.0.0.0
 ```
 
-## Usage
+Abre:
 
-```typescript
-import { DragDropModule } from 'exa-drag-swap';
-
-@NgModule({
-  imports: [
-    DragDropModule
-  ],
-  declarations: [AppComponent]
-})
-export class AppModule { }
+```text
+http://localhost:4200/
 ```
 
-## Roadmap
+## Deploy a GitHub Pages
 
-- [ ] Add animations
-- [ ] Improve performance
-- [ ] Add more customization options
+```bash
+npm run deploy
+```
 
-## License
+El script compila con `--base-href=/exa-drag-swap/` y publica el contenido de `dist/exa-drag-swap/browser` en la rama `gh-pages`.
 
-Distributed under the MIT License. See `LICENSE` for more information.
+## Estructura
 
-## Contact
+- `src/app/app.component.*`: portada y snippet de uso.
+- `src/app/drag-swap-demo.component.*`: demo interactiva.
+- `src/styles.scss`: estilos globales.
 
-Email: tu-correo@example.com
+## Uso básico
 
-## Acknowledgments
+```ts
+import { createSwapy } from 'swapy';
 
-- [Angular](https://angular.io)
-- [Swapy](https://www.npmjs.com/package/swapy)
-- [GitHub](https://github.com/othneildrew/Best-README-Template)
+const swapy = createSwapy(containerElement, {
+  animation: 'spring',
+  autoScrollOnDrag: true,
+  dragOnHold: false,
+  swapMode: 'drop',
+});
 
-## Version History
-
-- **1.0.0** (2026-03-22): Initial release
-- **1.0.1** (2026-03-23): Fixed minor bugs
-- **1.0.2** (2026-03-24): Added more features
+swapy.onSwapEnd(({ slotItemMap }) => {
+  console.log(slotItemMap.asArray);
+});
+```

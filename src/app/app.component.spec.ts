@@ -8,22 +8,17 @@ describe('AppComponent', () => {
     }).compileComponents();
   });
 
-  it('should create the app', () => {
+  it('creates the shell', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it(`should have the 'exa-drag-swap' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('exa-drag-swap');
-  });
-
-  it('should render title', () => {
+  it('renders the demo and usage snippet', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
+
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, exa-drag-swap');
+    expect(compiled.querySelector('app-drag-swap-demo')).toBeTruthy();
+    expect(compiled.textContent).toContain('Inicialización mínima');
   });
 });
