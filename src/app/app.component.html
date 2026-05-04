@@ -1,11 +1,9 @@
-
 <h2>Ejemplo de como usar "Drag and Swap" con Angular20+</h2>
 
 <!--listado contenedor-->
 <div class="container" #containerRef>
   <div class="slot a" data-swapy-slot="1">
     <div class="item a" data-swapy-item="a">
-      <div class="handle" data-swapy-handle></div>
       <div>A</div>
     </div>
   </div>
@@ -33,5 +31,23 @@
   </div>
 </div>
 
+<div class="actions">
+  <button class="action-button" type="button" (click)="resetLayout()">
+    Reset
+  </button>
+  <button class="action-button" type="button" (click)="addItem()">
+    Agregar tarjeta
+  </button>
+  <button
+    class="action-button"
+    type="button"
+    (click)="removeLastItem()"
+    [disabled]="!canRemoveItem"
+  >
+    Quitar tarjeta
+  </button>
+</div>
+
+<p class="order-label">Tarjetas actuales: {{ currentOrder }}</p>
 
 <h2>dpicuasi&#64;developer</h2>

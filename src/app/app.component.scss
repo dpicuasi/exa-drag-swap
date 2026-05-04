@@ -4,8 +4,10 @@ $slot-b-gradient: linear-gradient(135deg, #43e97b, #38f9d7);
 $slot-c-gradient: linear-gradient(135deg, #4facfe, #00f2fe);
 $slot-d-gradient: linear-gradient(135deg, #a18cd1, #fbc2eb);
 $slot-e-gradient: linear-gradient(135deg, #f6d365, #fda085);
+$slot-f-gradient: linear-gradient(135deg, #84fab0, #8fd3f4);
+$slot-g-gradient: linear-gradient(135deg, #ffecd2, #fcb69f);
+$slot-h-gradient: linear-gradient(135deg, #cfd9df, #e2ebf0);
 $highlight-color: rgba(255, 255, 255, 0.08);
-$handle-bg: rgba(0, 0, 0, 0.35);
 $slot-bg: rgba(255, 255, 255, 0.04);
 $slot-border: rgba(255, 255, 255, 0.08);
 
@@ -65,6 +67,56 @@ h4 {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.action-button {
+  min-width: 120px;
+  min-height: 44px;
+  padding: 0 22px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+    transform: none;
+  }
+}
+
+.order-label {
+  margin-top: 18px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.16);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
 /* Fila secundaria */
 .second-row {
   display: flex;
@@ -108,39 +160,28 @@ h4 {
   font-size: 36px;
   font-weight: 700;
   letter-spacing: 0.04em;
-  cursor: pointer;
+  cursor: grab;
   user-select: none;
   -webkit-user-select: none;
   position: relative;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  touch-action: none;
+  transition: box-shadow 0.2s ease, filter 0.2s ease;
 
   &.a { background: $slot-a-gradient; }
   &.b { background: $slot-b-gradient; color: #1a3a2a; text-shadow: none; }
   &.c { background: $slot-c-gradient; color: #0d2f4f; text-shadow: none; }
   &.d { background: $slot-d-gradient; color: #3a2048; text-shadow: none; }
   &.e { background: $slot-e-gradient; color: #4a3010; text-shadow: none; }
-}
+  &.f { background: $slot-f-gradient; color: #17364d; text-shadow: none; }
+  &.g { background: $slot-g-gradient; color: #4b2418; text-shadow: none; }
+  &.h { background: $slot-h-gradient; color: #293441; text-shadow: none; }
 
-/* Handle (asa para arrastrar) */
-.handle {
-  background: $handle-bg;
-  cursor: grab;
-  width: 24px;
-  height: 24px;
-  border-radius: 4px;
-  background-image: url('/assets/images/handle.svg');
-  background-size: 16px;
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.6;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  transition: opacity 0.2s ease;
-
-  &:hover {
-    opacity: 1;
+  &[data-swapy-dragging] {
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.38);
+    cursor: grabbing;
+    filter: saturate(1.08);
   }
 }
