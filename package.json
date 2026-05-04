@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "ng build --base-href=/exa-drag-swap/ && angular-cli-ghpages --dir=dist/exa-drag-swap/browser"
+    "deploy": "node ./node_modules/@angular/cli/bin/ng.js build --base-href=/exa-drag-swap/ && node ./node_modules/angular-cli-ghpages/angular-cli-ghpages --dir=dist/exa-drag-swap/browser"
   },
   "private": true,
   "dependencies": {
